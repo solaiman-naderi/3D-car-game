@@ -6,6 +6,7 @@ import {
 import { Suspense } from "react";
 import Track from "./Track";
 import Ground from "./Ground";
+import Car from "./Car";
 
 const ThreeScene = () => {
   return (
@@ -16,6 +17,7 @@ const ThreeScene = () => {
 
       <Track />
       <Ground />
+      <Car />
     </Suspense>
   );
 };
