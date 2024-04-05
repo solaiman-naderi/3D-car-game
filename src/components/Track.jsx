@@ -12,8 +12,7 @@ const Track = () => {
   const modelToGeometry = trackModel.scene.children[0].geometry;
 
   return (
-    <mesh>
-      <primitive object={modelToGeometry} attach={"geometry"} />
+    <mesh geometry={modelToGeometry}>
       <meshBasicMaterial map={trackModelTexture} toneMapped={false} />
     </mesh>
   );

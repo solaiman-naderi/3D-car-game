@@ -1,14 +1,24 @@
+import { usePlane } from "@react-three/cannon";
 import { MeshReflectorMaterial, useTexture } from "@react-three/drei";
 import { useEffect, useRef } from "react";
 import { BufferAttribute } from "three";
 
 const Ground = () => {
+  //Physic
+  const [ref] = usePlane(
+    () => ({
+      type: "Static",
+      rotation: [-Math.PI * 0.5, 0, 0],
+    }),
+    useRef(null)
+  );
+
   const meshRef = useRef();
   const meshRef2 = useRef();
 
   const gridMap = useTexture("/textures/grid.png");
   const aoMap = useTexture("/textures/ground-ao.png");
-  const alphMap = useTexture("/textures/alpha-map.png");
+  const alphaMap = useTexture("/textures/alpha-map.png");
 
   useEffect(() => {
     gridMap.anisotropy = 16;
@@ -45,7 +55,7 @@ const Ground = () => {
         <circleGeometry args={[6.15, 50]} />
         <MeshReflectorMaterial
           aoMap={aoMap}
-          alphaMap={alphMap}
+          alphaMap={alphaMap}
           transparent={true}
           color={[0.5, 0.5, 0.5]}
           envMapIntensity={0.35}
